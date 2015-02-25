@@ -345,7 +345,7 @@ URxvt*depth:                          32
 ! URxvt*perl-lib:                       string
 ! URxvt*perl-eval:                      perl-eval
 ! URxvt*perl-ext-common:                string
-URxvt*perl-ext:                       default,tabbedex,clipboard
+URxvt*perl-ext:                       default,tabbedex,clipboard,matcher
 ! URxvt*iso14755:                       boolean
 ! URxvt*iso14755_52:                    boolean
 ! URxvt*xrm:                            string
@@ -371,4 +371,4 @@ URxvt*perl-ext:                       default,tabbedex,clipboard
 ! URxvt*tab-fg:                         colour
 ! URxvt*tabbar-bg:                      colour
 ! URxvt*tabbar-fg:                      colour
-! URxvt*url-launcher:                   string
+URxvt*url-launcher:                   /usr/bin/chromium
