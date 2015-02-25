@@ -1,13 +1,13 @@
 yeahconsole*term:urxvtcd
 yeahconsole*consoleHeight:25
 yeahconsole*toggleKey:Win+grave
-yeahconsole*background:black
-yeahconsole*foreground:green
+yeahconsole*background:#000000
+yeahconsole*foreground:#aaaaaa
 yeahconsole*restart:1
 yeahconsole*keyFull:Win+F12
 yeahconsole*saveLines:500
-yeahconsole*keySmaller:Control+m
-yeahconsole*keyBigger:Control+n
+!yeahconsole*keySmaller:Control+m
+!yeahconsole*keyBigger:Control+n
 yeahconsole*faceName:Terminus:size=12
 yeahconsole*aniDelay: 30
 yeahconsole*metaSendsEscape: true
