@@ -49,6 +49,13 @@
 
 (global-set-key "\C-x\C-b" 'electric-buffer-list)
 
+(when (member "Liberation Sans Mono" (font-family-list))
+  (add-to-list 'initial-frame-alist '(font . "Liberation Sans Mono"))
+  (add-to-list 'default-frame-alist '(font . "Liberation Sans Mono")))
+
+(global-set-key (kbd "<C-mouse-4>") 'text-scale-increase)
+(global-set-key (kbd "<C-mouse-5>") 'text-scale-decrease)
+
 ;; C style
 
 (defun my-c-common-hook ()
