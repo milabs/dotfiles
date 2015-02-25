@@ -11,6 +11,24 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 
+--
+-- {{{ autostart
+--
+
+function autostart(binary, args, screen)
+    local run = awful.util.getdir("config") .. "/scripts/run-once.sh"
+    if not args then
+        awful.util.spawn_with_shell(run .. " " .. binary, screen)
+    else
+        awful.util.spawn_with_shell(run .. " " .. binary .. " " .. args, screen)
+    end
+end
+
+autostart("emacs", nil, 1);
+autostart("chromium", nil, 1);
+
+-- }}}
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)

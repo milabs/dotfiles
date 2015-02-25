@@ -8,4 +8,4 @@ ln -sf $dotfiles/.Xresources.* $HOME
 
 # awesome WM
 mkdir -p $HOME/.config/awesome
-ln -sf $dotfiles/.config/awesome/rc.lua $HOME/.config/awesome
+cp -sru $dotfiles/.config/awesome $HOME/.config
