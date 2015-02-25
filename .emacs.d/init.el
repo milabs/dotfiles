@@ -16,7 +16,7 @@
 ;;
 
 (defvar required-packages
-  '( magit ) "A list of packages to ensure are installed at launch")
+  '( smex magit window-number ) "A list of packages to ensure are installed at launch")
 
 (defun packages-installed-p ()
   (loop for p in required-packages
@@ -29,8 +29,15 @@
     (when (not (package-installed-p p))
       (package-install p))))
 
-(if (package-installed-p 'magit)
-    (global-set-key "\C-x\C-z" 'magit-status))
+(require 'smex)
+(global-set-key "\M-x" 'smex)
+
+(require 'magit)
+(global-set-key "\C-x\C-z" 'magit-status)
+
+(require 'window-number)
+(window-number-mode)
+(window-number-meta-mode)
 
 ;;
 ;; GUI customization
