@@ -26,6 +26,7 @@ end
 
 autostart("emacs", nil, 1);
 autostart("chromium", nil, 1);
+autostart("VirtualBox", nil, 1);
 
 -- }}}
 
@@ -103,7 +104,8 @@ end
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ "1:www", "2:con", "3:dev", "4:all", "5:all", "6:all", "7:all", "8:all", "9:msg"  }, s, layouts[2])
+    tags[s] = awful.tag({ "1:www", "2:con", "3:dev", "4:all", "5:all", "6:all", "7:all", "8:vms", "9:msg"  }, 
+s, layouts[2])
 end
 -- }}}
 
@@ -386,8 +388,11 @@ awful.rules.rules = {
     { rule = { class = "Emacs"},
       properties = { tag = tags[1][3],
                      floating = false } },
-    { rule = { class = "Chromium"},
+    { rule = { class = "Chromium" },
       properties = { tag = tags[1][1],
+                     floating = false } },
+    { rule = { class = "VirtualBox" },
+      properties = { tag = tags[1][8],
                      floating = false } }
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
