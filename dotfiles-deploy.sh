@@ -9,3 +9,7 @@ ln -sf $dotfiles/.Xresources.* $HOME
 # awesome WM
 mkdir -p $HOME/.config/awesome
 cp -sru $dotfiles/.config/awesome $HOME/.config
+
+# emacs OS
+mkdir -p $HOME/.emacs.d
+cp -sru $dotfiles/.emacs.d $HOME/
