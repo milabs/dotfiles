@@ -13,3 +13,6 @@ cp -sru $dotfiles/.config/awesome $HOME/.config
 # emacs OS
 mkdir -p $HOME/.emacs.d
 cp -sru $dotfiles/.emacs.d $HOME/
+
+# gitk
+ln -sf $dotfiles/.gtkrc-2.0 $HOME/
