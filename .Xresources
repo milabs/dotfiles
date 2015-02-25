@@ -1,0 +1,4 @@
+#include ".Xresources.awesome"
+
+#include ".Xresources.urxvt"
+#include ".Xresources.yeahconsole"
