@@ -39,6 +39,9 @@
 (window-number-mode)
 (window-number-meta-mode)
 
+(require 'ido)
+(ido-mode t)
+
 ;;
 ;; GUI customization
 ;;
