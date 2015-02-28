@@ -283,6 +283,10 @@ globalkeys = awful.util.table.join(
 
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
+    -- Trans
+
+    awful.key({ modkey,           }, "t",     function () awful.util.spawn_with_shell(awful.util.getdir("config") .. "/scripts/gtrans.sh") end),
+
     -- Prompt
     awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
 
