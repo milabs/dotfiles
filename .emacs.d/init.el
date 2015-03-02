@@ -65,6 +65,7 @@
   (progn
     (linum-mode)
     (show-paren-mode)
+    (setq comment-start "// " comment-end "")
     (c-set-style "linux")))
 
 (add-hook 'c-mode-common-hook 'my-c-common-hook)
