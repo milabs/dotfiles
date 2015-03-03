@@ -49,6 +49,7 @@
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
+(setq visible-bell 1)
 
 (global-set-key "\C-x\C-b" 'electric-buffer-list)
 
