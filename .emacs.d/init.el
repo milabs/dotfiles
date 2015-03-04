@@ -39,8 +39,13 @@
 (window-number-mode)
 (window-number-meta-mode)
 
+(require 'blank-mode)
+;;(setq blank-chars '(trailing space-before-tab newline indentation empty space-after-tab))
+;;(setq blank-style '(color))
+
 (require 'ido)
 (ido-mode t)
+
 
 ;;
 ;; GUI customization
@@ -65,6 +70,7 @@
 (defun my-c-common-hook ()
   (progn
     (linum-mode)
+    (blank-mode)
     (show-paren-mode)
     (setq comment-start "// " comment-end "")
     (c-set-style "linux")))
