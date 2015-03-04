@@ -40,8 +40,8 @@
 (window-number-meta-mode)
 
 (require 'blank-mode)
-;;(setq blank-chars '(trailing space-before-tab newline indentation empty space-after-tab))
-;;(setq blank-style '(color))
+(setq blank-chars '(trailing space-before-tab newline indentation empty space-after-tab))
+(setq blank-style '(color))
 
 (require 'ido)
 (ido-mode t)
