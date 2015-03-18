@@ -106,7 +106,7 @@ end
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ "1:www", "2:con", "3:dev", "4:all", "5:all", "6:all", "7:all", "8:all", "9:vms"  },
+    tags[s] = awful.tag({ "1:www", "2:con", "3:dev", "4:all", "5:all", "6:all", "7:all", "8:pdf", "9:vms"  },
 s, layouts[2])
 end
 -- }}}
@@ -387,12 +387,9 @@ awful.rules.rules = {
                      keys = clientkeys,
                      size_hints_honor = false,
                      buttons = clientbuttons } },
-    { rule = { class = "MPlayer" },
-      properties = { floating = true } },
-    { rule = { class = "pinentry" },
-      properties = { floating = true } },
-    { rule = { class = "gimp" },
-      properties = { floating = true } },
+    { rule = { class = "qpdfview" },
+      properties = { tag = tags[1][8],
+                     floating = false } },
     { rule = { class = "Emacs"},
       properties = { tag = tags[1][3],
                      floating = false } },
