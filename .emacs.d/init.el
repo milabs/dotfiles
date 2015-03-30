@@ -16,7 +16,7 @@
 ;;
 
 (defvar required-packages
-  '( smex magit window-number ) "A list of packages to ensure are installed at launch")
+  '( smex magit window-number graphviz-dot-mode ) "A list of packages to ensure are installed at launch")
 
 (defun packages-installed-p ()
   (loop for p in required-packages
@@ -45,6 +45,20 @@
 
 (require 'ido)
 (ido-mode t)
+
+(require 'graphviz-dot-mode)
+(setq graphviz-dot-auto-indent-on-newline nil)
+(setq graphviz-dot-auto-indent-on-braces nil)
+(setq graphviz-dot-auto-indent-on-semi nil)
+(setq graphviz-dot-preview-extension "svg")
+
+(defun my:graphviz-dot-mode-hook ()
+  (progn
+    (linum-mode)
+    (blank-mode)
+    (show-paren-mode)))
+
+(add-hook 'graphviz-dot-mode-hook 'my:graphviz-dot-mode-hook);
 
 
 ;;
