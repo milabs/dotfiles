@@ -58,8 +58,7 @@
     (blank-mode)
     (show-paren-mode)))
 
-(add-hook 'graphviz-dot-mode-hook 'my:graphviz-dot-mode-hook);
-
+(add-hook 'graphviz-dot-mode-hook 'my:graphviz-dot-mode-hook)
 
 ;;
 ;; GUI customization
@@ -95,3 +94,14 @@
 
 (setq make-backup-files nil)
 (setq auto-save-default nil)
+
+;; reverse-words
+
+(defun reverse-words (beg end)
+    "Reverse the order of words in region."
+    (interactive "*r")
+    (apply
+     'insert
+      (reverse
+       (split-string
+        (delete-and-extract-region beg end) "\\b"))))
