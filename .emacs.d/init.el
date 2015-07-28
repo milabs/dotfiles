@@ -110,3 +110,7 @@
 (color-theme-initialize)
 (setq color-theme-is-global t)
 (color-theme-deep-blue)
+
+;; calendar
+
+(setq calendar-week-start-day 1)
