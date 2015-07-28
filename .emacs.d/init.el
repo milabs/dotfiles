@@ -16,7 +16,7 @@
 ;;
 
 (defvar required-packages
-  '( smex magit window-number graphviz-dot-mode ) "A list of packages to ensure are installed at launch")
+  '( smex magit window-number graphviz-dot-mode color-theme ) "A list of packages to ensure are installed at launch")
 
 (defun packages-installed-p ()
   (loop for p in required-packages
@@ -105,3 +105,8 @@
       (reverse
        (split-string
         (delete-and-extract-region beg end) "\\b"))))
+
+(require 'color-theme)
+(color-theme-initialize)
+(setq color-theme-is-global t)
+(color-theme-deep-blue)
