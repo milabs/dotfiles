@@ -26,9 +26,8 @@ function autostart(binary, args, screen)
     end
 end
 
-autostart("emacs", nil, 1);
+autostart("emacs --daemon", nil, 1);
 autostart("chromium", nil, 1);
-autostart("VirtualBox", nil, 1);
 
 -- }}}
 
