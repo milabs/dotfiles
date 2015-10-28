@@ -1,116 +1,52 @@
-(require 'cl)
-(require 'package)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;
-;; add package archives
-;;
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("melpa" . "https://melpa.org/packages/")
+                         ("melpa-stable" . "https://stable.melpa.org/packages/")))
 
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (package-initialize)
 
-;;
-;; add required packages list
-;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defvar required-packages
-  '( smex magit window-number graphviz-dot-mode color-theme ) "A list of packages to ensure are installed at launch")
+(setq milabs/musthave-package-list
+      '(paradox))
 
-(defun packages-installed-p ()
-  (loop for p in required-packages
-        when (not (package-installed-p p)) do (return nil)
-        finally (return t)))
+(setq milabs/optional-package-list
+      '(smex magit helm guide-key company smartparens better-defaults smart-mode-line undo-tree zenburn-theme solarized-theme irony ibuffer-vc ibuffer-git))
 
-(unless (packages-installed-p)
-  (package-refresh-contents)
-  (dolist (p required-packages)
-    (when (not (package-installed-p p))
-      (package-install p))))
+;; load packages from the list
+(defun milabs/package-list-install-p (packages)
+  "Assure every package is installed, ask for installation if not"
+  (mapcar
+   (lambda (package)
+     (if (package-installed-p package)
+	 nil
+       (if (y-or-n-p (format "Package %s if missing, install it?" package))
+	   (package-install package)
+	 )))
+   packages))
 
-(require 'smex)
-(global-set-key "\M-x" 'smex)
+(milabs/package-list-install-p milabs/musthave-package-list)
+(milabs/package-list-install-p milabs/optional-package-list)
 
-(require 'magit)
-(global-set-key "\C-x\C-z" 'magit-status)
+(load-theme 'monokai t)
 
-(require 'window-number)
-(window-number-mode)
-(window-number-meta-mode)
+(setq guide-key/guide-key-sequence t)
+(setq guide-key/recursive-key-sequence-flag t)
+(setq guide-key/popup-window-position 'bottom) 
+(setq guide-key/idle-delay 0.1)
+(guide-key-mode 1) 
 
-(require 'blank-mode)
-(setq blank-chars '(trailing space-before-tab newline indentation empty space-after-tab))
-(setq blank-style '(color))
+(global-set-key (kbd "M-x") 'helm-M-x)
+(setq helm-M-x-fuzzy-match t)
 
-(require 'ido)
-(ido-mode t)
+(require 'undo-tree)
+(global-undo-tree-mode)
 
-(require 'graphviz-dot-mode)
-(setq graphviz-dot-auto-indent-on-newline nil)
-(setq graphviz-dot-auto-indent-on-braces nil)
-(setq graphviz-dot-auto-indent-on-semi nil)
-(setq graphviz-dot-preview-extension "svg")
+(defun milabs/load-file-if-exists (file)
+  (if (file-exists-p file)
+      (load-file file)
+    (warn (format "File '%s' not exists" file))))
 
-(defun my:graphviz-dot-mode-hook ()
-  (progn
-    (linum-mode)
-    (blank-mode)
-    (show-paren-mode)))
-
-(add-hook 'graphviz-dot-mode-hook 'my:graphviz-dot-mode-hook)
-
-;;
-;; GUI customization
-;;
-
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-(scroll-bar-mode -1)
-(setq visible-bell 1)
-
-(global-set-key "\C-x\C-b" 'electric-buffer-list)
-
-(when (member "Liberation Sans Mono" (font-family-list))
-  (add-to-list 'initial-frame-alist '(font . "Liberation Sans Mono"))
-  (add-to-list 'default-frame-alist '(font . "Liberation Sans Mono")))
-
-(global-set-key (kbd "<C-mouse-4>") 'text-scale-increase)
-(global-set-key (kbd "<C-mouse-5>") 'text-scale-decrease)
-
-;; C style
-
-(defun my-c-common-hook ()
-  (progn
-    (linum-mode)
-    (blank-mode)
-    (show-paren-mode)
-    (setq comment-start "// " comment-end "")
-    (c-set-style "linux")))
-
-(add-hook 'c-mode-common-hook 'my-c-common-hook)
-
-;; disable backups
-
-(setq make-backup-files nil)
-(setq auto-save-default nil)
-
-;; reverse-words
-
-(defun reverse-words (beg end)
-    "Reverse the order of words in region."
-    (interactive "*r")
-    (apply
-     'insert
-      (reverse
-       (split-string
-        (delete-and-extract-region beg end) "\\b"))))
-
-(require 'color-theme)
-(color-theme-initialize)
-(setq color-theme-is-global t)
-(color-theme-deep-blue)
-
-;; calendar
-
-(setq calendar-week-start-day 1)
+(milabs/load-file-if-exists "~/.emacs.d/init-c-mode.el")
+(milabs/load-file-if-exists "~/.emacs.d/init-ibuffer-mode.el")
