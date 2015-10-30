@@ -10,9 +10,9 @@ function update_volume(widget)
    fd:close()
 
    local volume = tonumber(string.match(status, "(%d?%d?%d)%%"))
-   volume = string.format("%-3d", volume)
+   volume = string.format("%-3d", volume or 0)
 
-   status = string.match(status, "%[(o[^%]]*)%]")
+   status = string.match(status, "%[(o[^%]]*)%]") or ""
 
    if string.find(status, "on", 1, true) then
        -- For the volume numbers
