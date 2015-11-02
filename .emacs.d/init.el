@@ -6,6 +6,9 @@
 
 (package-initialize)
 
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq milabs/musthave-package-list
@@ -19,11 +22,8 @@
   "Assure every package is installed, ask for installation if not"
   (mapcar
    (lambda (package)
-     (if (package-installed-p package)
-	 nil
-       (if (y-or-n-p (format "Package %s if missing, install it?" package))
-	   (package-install package)
-	 )))
+     (unless (package-installed-p package)
+	(package-install package)))
    packages))
 
 (milabs/package-list-install-p milabs/musthave-package-list)
