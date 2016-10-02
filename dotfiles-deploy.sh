@@ -6,9 +6,9 @@ dotfiles=$(dirname $(readlink -f $0))
 ln -sf $dotfiles/.Xresources $HOME
 ln -sf $dotfiles/.Xresources.* $HOME
 
-# awesome WM
-mkdir -p $HOME/.config/awesome
-cp -sru $dotfiles/.config/awesome $HOME/.config
+# i3wm
+cp -sru $dotfiles/config/i3 $HOME/.config/
+cp -sru $dotfiles/config/i3status $HOME/.config/
 
 # emacs OS
 mkdir -p $HOME/.emacs.d

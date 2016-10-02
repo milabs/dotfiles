@@ -1,0 +1,43 @@
+# i3status configuration file.
+# see "man i3status" for documentation.
+
+order					+= "disk /home"
+order					+= "bitcoin_price"
+order					+= "ethernet _first_"
+order					+= "volume_status"
+order					+= "tztime local"
+
+general {
+        colors				= true
+        interval			= 1
+}
+
+ethernet _first_ {
+        format_up			= "%ip"
+}
+
+tztime local {
+        format				=  "%Y/%m/%d %H:%M:%S"
+}
+
+load {
+        format = "%1min"
+}
+
+disk "/home" {
+	format				= " %avail"
+	on_click 1			= "exec pcmanfm ~"
+}
+
+bitcoin_price {
+	markets				= "btceUSD"
+}
+
+volume_status {
+	button_up			= 4
+	button_down			= 5
+	format				= "{percentage}% "
+
+	button_mute			= 1
+	format_muted			= "{percentage}% "
+}
